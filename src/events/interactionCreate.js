@@ -1,4 +1,6 @@
+const { Permissions } = require('discord.js');
 const CounterInteractions = require('../interactions/counterInteractions');
+const CountdownInteractions = require('../interactions/countdownInteractions');
 
 module.exports = {
   name: 'interactionCreate',
@@ -6,11 +8,33 @@ module.exports = {
   execute: (interaction, client) => {
     if (client.commands.has(interaction.commandName)) {
       switch (interaction.commandName) {
-        case 'registertgcounter':
-          CounterInteractions.registertgcounter(interaction);
+        case 'tgcounter':
+          if (interaction.member.permissions.has([Permissions.FLAGS.MODERATE_MEMBERS])) {
+            if (interaction.options.getSubcommand() === 'register') {
+              CounterInteractions.registertgcounter(interaction);
+            }
+            else if (interaction.options.getSubcommand() === 'update') {
+              CounterInteractions.updatetgcounter(interaction);
+            }
+          }
+          else {
+            interaction.reply('You do not have permission to use this command!');
+            return;
+          }
           break;
-        case 'updatetgcounter':
-          CounterInteractions.updatetgcounter(interaction);
+        case 'tgcountdown':
+          if (interaction.member.permissions.has([Permissions.FLAGS.SEND_MESSAGES])) {
+            if (interaction.options.getSubcommand() === 'add') {
+              CountdownInteractions.add(interaction);
+            }
+            else if (interaction.options.getSubcommand() === 'delete') {
+              CountdownInteractions.delete(interaction);
+            }
+          }
+          else {
+            interaction.reply('You do not have permission to use this command!');
+            return;
+          }
           break;
       }
     }

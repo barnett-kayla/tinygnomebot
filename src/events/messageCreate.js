@@ -1,4 +1,5 @@
 const counter = require('../workers/counter.js');
+const countdown = require('../workers/countdown.js');
 
 const TG_PREFIX = '!tg'
 
@@ -6,7 +7,6 @@ module.exports = {
   name: 'messageCreate',
   once: false,
   execute: (msg) => {
-    console.log('start of messageCreate');
     //Ping/pong message types
     if (msg.content.toLowerCase().localeCompare('ping') === 0) {
       msg.reply('pong');
@@ -17,7 +17,15 @@ module.exports = {
       return;
     }
 
-    //Counting
-    counter(msg);
+    // If the message is a number pass it to the counter
+    if (!isNaN(msg.content)) {
+      counter(msg);
+    }
+
+    // If the message starts with !tg pass it to the countdown
+    if (msg.content.indexOf(TG_PREFIX) === 0) {
+      if (msg.content.indexOf('countdown') === 3)
+      countdown(msg, msg.content.substring(12).trim());
+    }
   }
 };

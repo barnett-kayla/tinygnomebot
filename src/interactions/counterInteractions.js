@@ -1,13 +1,8 @@
-const { Permissions } = require('discord.js');
+
 const CounterSettings = require('../models/CounterSettings');
 
 module.exports = {
   registertgcounter: (interaction) => {
-    if (!interaction.member.permissions.has([Permissions.FLAGS.MODERATE_MEMBERS])) {
-      interaction.reply('You do not have permission to use this command!');
-      return;
-    }
-
     CounterSettings.findOne({ channel_id: interaction.channelId }, (err, settings) => {
       if (err) {
         console.log(err);
@@ -40,11 +35,6 @@ module.exports = {
     });
   },
   updatetgcounter: (interaction) => {
-    if (!interaction.member.permissions.has([Permissions.FLAGS.MODERATE_MEMBERS])) {
-      interaction.reply('You do not have permission to use this command!');
-      return;
-    }
-
     CounterSettings.findOne({ channel_id: interaction.channelId }, (err, settings) => {
       if (err) {
         console.log(err);
@@ -63,15 +53,12 @@ module.exports = {
           last_counter_id: ''
         });
       } else {
-        console.log(settings);
-        console.log('-');
-        console.log(interaction);
         settings.counter_react_emoji = interaction.options.getString('counter_react_emoji');
         settings.counter_breaker_role_name = interaction.options.getString('counter_breaker_role_name');
         settings.counter_miscount_message = interaction.options.getString('counter_miscount_message');
         settings.counter_double_count_message = interaction.options.getString('counter_double_count_message');
       }
-      console.log(settings);
+
       settings.save(err => {
         if (err) {
           console.log(err);
