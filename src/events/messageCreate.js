@@ -1,14 +1,6 @@
-const counter = require('../commands/counter.js');
-const tgConfig = require('../commands/tiny_gnome_config.js');
+const counter = require('../workers/counter.js');
 
 const TG_PREFIX = '!tg'
-let definedTGConfig = {
-  counterChannelIds: [],
-  counterReactEmoji: "🥳",
-  counterBreakerRoleNames: [],
-  counterMiscountMessage: "Booo <author> you can't count!",
-  counterDoubleCountMessage: "Booo <author> you can't count twice in a row!",
-};
 
 module.exports = {
   name: 'messageCreate',
@@ -25,13 +17,7 @@ module.exports = {
       return;
     }
 
-    //Make updates to tiny gnome config
-    if (msg.content.toLowerCase().indexOf(TG_PREFIX) === 0) {
-      definedTGConfig = tgConfig(msg, definedTGConfig);
-      return;
-    }
-
     //Counting
-    counter(msg, definedTGConfig);
+    counter(msg);
   }
 };
