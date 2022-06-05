@@ -1,7 +1,7 @@
 {
   "name": "tinygnomebot",
   "version": "1.0.0",
-  "description": "Tiny gnome's Discord Bot",
+  "description": "Tiny gnome's Discord Bot that let's her play with JS code",
   "main": "tiny_gnome_bot.js",
   "scripts": {
     "dev": "nodemon tiny_gnome_bot.js"
