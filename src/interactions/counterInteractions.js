@@ -58,6 +58,7 @@ module.exports = {
         settings.counter_miscount_message = interaction.options.getString('counter_miscount_message');
         settings.counter_double_count_message = interaction.options.getString('counter_double_count_message');
       }
+      console.log(settings);
 
       settings.save(err => {
         if (err) {

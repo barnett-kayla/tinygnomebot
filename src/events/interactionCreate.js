@@ -9,18 +9,18 @@ module.exports = {
     if (client.commands.has(interaction.commandName)) {
       switch (interaction.commandName) {
         case 'tgcounter':
-          if (interaction.member.permissions.has([Permissions.FLAGS.MODERATE_MEMBERS])) {
+          //if (interaction.member.permissions.has([Permissions.FLAGS.MODERATE_MEMBERS])) {
             if (interaction.options.getSubcommand() === 'register') {
               CounterInteractions.registertgcounter(interaction);
             }
             else if (interaction.options.getSubcommand() === 'update') {
               CounterInteractions.updatetgcounter(interaction);
             }
-          }
-          else {
-            interaction.reply('You do not have permission to use this command!');
-            return;
-          }
+          //}
+          //else {
+            //interaction.reply('You do not have permission to use this command!');
+            //return;
+          //}
           break;
         case 'tgcountdown':
           if (interaction.member.permissions.has([Permissions.FLAGS.SEND_MESSAGES])) {
