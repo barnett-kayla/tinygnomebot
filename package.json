@@ -17,7 +17,8 @@
     "dotenv": "^16.0.1",
     "mongoose": "^6.3.5",
     "requirejs": "^2.3.6",
-    "sqlite3": "^5.0.8"
+    "sqlite3": "^5.0.8",
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.16"

@@ -1,6 +1,7 @@
 const { Permissions } = require('discord.js');
 const CounterInteractions = require('../interactions/counterInteractions');
 const CountdownInteractions = require('../interactions/countdownInteractions');
+const WeatherInteractions = require('../interactions/weatherInteraction');
 
 module.exports = {
   name: 'interactionCreate',
@@ -35,6 +36,9 @@ module.exports = {
             interaction.reply('You do not have permission to use this command!');
             return;
           }
+          break;
+        case 'tgweather':
+          WeatherInteractions.search(interaction);
           break;
       }
     }

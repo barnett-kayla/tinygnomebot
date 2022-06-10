@@ -7,6 +7,9 @@ module.exports = {
   name: 'messageCreate',
   once: false,
   execute: (msg) => {
+    if (msg.author.bot) {
+      return;
+    }
     //Ping/pong message types
     if (msg.content.toLowerCase().localeCompare('ping') === 0) {
       msg.reply('pong');
