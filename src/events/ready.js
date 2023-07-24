@@ -2,7 +2,6 @@ require("dotenv").config();
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const IDLECHAT_ID = '109834809538248704';
-const GETAWAY_ID = '968983040854487090';
 
 module.exports = {
   name: 'ready',
@@ -33,11 +32,6 @@ module.exports = {
             Routes.applicationGuildCommands(CLIENT_ID, IDLECHAT_ID),
             { body: commandsToRegister },
           );
-
-          await rest.put(
-            Routes.applicationGuildCommands(CLIENT_ID, GETAWAY_ID),
-            { body: commandsToRegister },
-          )
         }
 
         console.log('Successfully reloaded application (/) commands.');

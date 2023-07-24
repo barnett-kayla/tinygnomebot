@@ -99,6 +99,49 @@ module.exports = {
         .setName('degree_type')
         .setDescription('The degree type to be used when displaying temprature information')
         .setRequired(false)
+      ),
+    new SlashCommandBuilder()
+      .setName('tggroup')
+      .setDescription('Create groups of people')
+      .addStringOption(option => option
+        .setName('group_by')
+        .setDescription('How do you want to group people?')
+        .addChoices(
+          { name: 'Channel', value: 'CHANNEL' },
+          { name: 'Role', value: 'ROLE' },
+          { name: 'Manual List', value: 'MANUAL' }
+        )
+        .setRequired(true)
+      )
+      .addNumberOption(option => option
+        .setName('number_of_groups')
+        .setDescription('How many groups should be created. Use this if there should be a set number of groups.')
+        .setRequired(false)
+      )
+      .addNumberOption(option => option
+        .setName('number_of_people_per_group')
+        .setDescription('How many people should be in each group. Use this if groups should be a certain size.')
+        .setRequired(false)
+      )
+      .addChannelOption(option => option
+        .setName('channel')
+        .setDescription('The channel to pull users from')
+        .setRequired(false)
+      )
+      .addRoleOption(option => option
+        .setName('role')
+        .setDescription('The role to pull users from')
+        .setRequired(false)
+      )
+      .addStringOption(option => option
+        .setName('users_list')
+        .setDescription('The users to be broken into groups')
+        .setRequired(false)
+      )
+      .addNumberOption(option => option
+        .setName('total_people')
+        .setDescription('How many people total when creating a manual list of users')
+        .setRequired(false)
       )
   ]
 };

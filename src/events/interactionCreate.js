@@ -1,6 +1,7 @@
 const { Permissions } = require('discord.js');
 const CounterInteractions = require('../interactions/counterInteractions');
 const CountdownInteractions = require('../interactions/countdownInteractions');
+const GroupInteraction = require('../interactions/groupInteraction');
 const WeatherInteractions = require('../interactions/weatherInteraction');
 
 module.exports = {
@@ -39,6 +40,9 @@ module.exports = {
           break;
         case 'tgweather':
           WeatherInteractions.search(interaction);
+          break;
+        case 'tggroup':
+          GroupInteraction.makeGroups(interaction);
           break;
       }
     }
